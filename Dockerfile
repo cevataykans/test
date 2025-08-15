@@ -4,7 +4,7 @@ RUN useradd -m abiotic
 USER abiotic
 WORKDIR /home/abiotic
 
-RUN apt update sudo apt upgrade -y
+RUN apt update && apt upgrade -y
 RUN apt install software-properties-common lsb-release wget
 
 RUN mkdir -pm755 /etc/apt/keyrings
