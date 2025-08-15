@@ -21,7 +21,7 @@ RUN apt-add-repository non-free
 RUN apt update
 RUN apt install steamcmd
 
-mkdir /home/abiotic/abioticserver
+RUN mkdir /home/abiotic/abioticserver
 RUN /usr/games/steamcmd +@sSteamCmdForcePlatformType windows +force_install_dir /home/abiotic/abioticserver +login anonymous +app_update 2857200 +quit
 
 ENTRYPOINT ["echo", "Hello World!"]
