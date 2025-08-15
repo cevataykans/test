@@ -1,0 +1,45 @@
+name: Abiotic Factor CI
+run-name: Abiotic Factor - ${{ inputs.version }}
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        type: string
+        description: Release Version
+  push:
+    branches:
+      - main
+    paths:
+      - '**/Dockerfile*'
+      - runserver.sh
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build_server:
+    permissions:
+      contents: read
+      packages: write
+    timeout-minutes: 10
+    name: Build Abiotic Factor Dedicated Server
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Project Files
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+
+      - name: GHCR Login
+        uses: docker/login-action@184bdaa0721073962dff0199f1fb9940f07167d1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push container
+        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/abiotic-factor-macos-docker:latest
