@@ -1,0 +1,29 @@
+name: publish.yml
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/Dockerfile*'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  publish_image:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    name: Publish Docker Image ${{ matrix.os == 'ubuntu-latest' && 'AMD' || 'ARM' }}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Build & Publish
+        env:
+          PLATFORM_TAG: ${{ matrix.os == 'ubuntu-latest' && 'amd-latest' || 'arm-latest' }}
+        run: |
+          docker build -t abiotic:latest .
