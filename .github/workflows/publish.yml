@@ -11,6 +11,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  DOCKER_USERNAME: 'cevataykans'
+
 jobs:
   publish_image:
     strategy:
@@ -23,8 +26,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ env.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_BOT_ACCESS }}
       - name: Build & Publish
-        env:
-          PLATFORM_TAG: ${{ matrix.os == 'ubuntu-latest' && 'amd-latest' || 'arm-latest' }}
         run: |
-          docker build -t abiotic:latest .
+          docker build -t ${{ env.DOCKER_USERNAME }}/abiotic:latest .
+          docker push ${{ env.DOCKER_USERNAME }}/abiotic:latest

@@ -23,4 +23,12 @@ RUN apt-get install steamcmd
 RUN mkdir /home/abiotic/abioticserver
 RUN /usr/games/steamcmd +@sSteamCmdForcePlatformType windows +force_install_dir /home/abiotic/abioticserver +login anonymous +app_update 2857200 +quit
 
-ENTRYPOINT ["echo", "Hello World!"]
+COPY runserver.sh abioticserver/AbioticFactor/Binaries/Win64/runserver.sh
+RUN chmod +x abioticserver/AbioticFactor/Binaries/Win64/runserver.sh
+
+EXPOSE 7777/tcp
+EXPOSE 7777/udp
+EXPOSE 27015/tcp
+EXPOSE 27015/udp
+
+ENTRYPOINT ["/bin/bash", "/home/abiotic/abioticserver/AbioticFactor/Binaries/Win64/runserver.sh"]
