@@ -15,7 +15,6 @@ RUN apt-get install -y --install-recommends winehq-staging
 RUN apt-get install -y cabextract winbind screen xvfb
 
 RUN add-apt-repository multiverse
-RUN apt-add-repository non-free
 RUN apt-get update
 RUN apt-get install -y steamcmd
 
