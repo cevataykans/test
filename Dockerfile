@@ -16,7 +16,9 @@ RUN apt-get install -y cabextract winbind screen xvfb
 
 RUN add-apt-repository multiverse
 RUN apt-get update
-RUN apt-get install -y steamcmd
+RUN echo steam steam/question select "I AGREE" | debconf-set-selections
+RUN echo steam steam/license note '' | sudo debconf-set-selections
+RUN apt-get install steamcmd
 
 RUN mkdir /home/abiotic/abioticserver
 RUN /usr/games/steamcmd +@sSteamCmdForcePlatformType windows +force_install_dir /home/abiotic/abioticserver +login anonymous +app_update 2857200 +quit
