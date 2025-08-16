@@ -26,6 +26,10 @@ RUN /usr/games/steamcmd +@sSteamCmdForcePlatformType windows +force_install_dir 
 COPY runserver.sh abioticserver/AbioticFactor/Binaries/Win64/runserver.sh
 RUN chmod +x abioticserver/AbioticFactor/Binaries/Win64/runserver.sh
 
+RUN useradd -m abiotic
+RUN -u abiotic -s
+USER abiotic
+
 EXPOSE 7777/tcp
 EXPOSE 7777/udp
 EXPOSE 27015/tcp
