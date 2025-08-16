@@ -11,7 +11,7 @@ RUN wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/$(lsb_re
 
 RUN dpkg --add-architecture i386
 RUN apt-get update
-RUN apt-get install -y --install-recommends winehq-staging
+RUN apt-get install -y --install-recommends winehq-stable
 RUN apt-get install -y cabextract winbind screen xvfb
 
 RUN add-apt-repository multiverse
