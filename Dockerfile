@@ -1,5 +1,6 @@
 FROM ubuntu:24.04
 
+RUN useradd -m abiotic
 WORKDIR /home/abiotic
 
 RUN apt-get update && apt-get upgrade -y
@@ -26,7 +27,6 @@ RUN /usr/games/steamcmd +@sSteamCmdForcePlatformType windows +force_install_dir 
 COPY runserver.sh abioticserver/AbioticFactor/Binaries/Win64/runserver.sh
 RUN chmod +x abioticserver/AbioticFactor/Binaries/Win64/runserver.sh
 
-RUN useradd -m abiotic
 USER abiotic
 
 EXPOSE 7777/tcp
