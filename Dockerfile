@@ -27,9 +27,9 @@ RUN /usr/games/steamcmd +@sSteamCmdForcePlatformType windows +force_install_dir 
 COPY runserver.sh abioticserver/AbioticFactor/Binaries/Win64/runserver.sh
 RUN chmod +x abioticserver/AbioticFactor/Binaries/Win64/runserver.sh
 
-RUN chmod -R u+w abioticserver/AbioticFactor
+RUN chmod -R u+w /home/abiotic/abioticserver/AbioticFactor
 
-VOLUME ["abioticserver/AbioticFactor/Saved"]
+VOLUME ["/home/abiotic/abioticserver/AbioticFactor/Saved"]
 
 USER abiotic
 
