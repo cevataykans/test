@@ -1,4 +1,4 @@
-# Abiotic Server MacOS Hosting Guide
+# Abiotic Factor MacOS Server Hosting Guide
 
 ## Status
 
