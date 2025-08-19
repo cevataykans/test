@@ -31,7 +31,7 @@ The image has not been tested for:
 - Linux machines with ARM architecture.
   - QEMU emulation may be too inefficient depending on hardware.
 
-Windows machines can efficiently run the dedicated server without the workarounds here. Please refer to the developer supported [hosting guide](https://github.com/DFJacob/AbioticFactorDedicatedServer/wiki).
+Windows machines can efficiently run the dedicated server without the workarounds here. Please refer to the [hosting guide](https://github.com/DFJacob/AbioticFactorDedicatedServer/wiki).
 
 ## Requirements (MacOS)
 
