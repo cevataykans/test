@@ -27,6 +27,7 @@ ServerPassword="${ServerPassword:-}"
 SteamServerName="${SteamServerName:-Dedicated Server}"
 WorldSaveName="${WorldSaveName:-Cascade}"
 AdminPassword="${AdminPassword:-}"
+OverrideSandboxPath="${OverrideSandboxPath:-}"
 AdditionalArgs="${AdditionalArgs:-}"
 
 SetUsePerfThreads="-useperfthreads"
@@ -54,4 +55,6 @@ WINEDEBUG=fixme-all xvfb-run wine64 abioticserver/AbioticFactor/Binaries/Win64/A
    $SetUsePerfThreads $SetNoAsyncLoadingThread \
    -PORT=$Port -QUERYPORT=$QueryPort -tcp \
    -MaxServerPlayers=$MaxServerPlayers -WorldSaveName="$WorldSaveName" \
-   -SteamServerName="$SteamServerName" -ServerPassword=${ServerPassword} $SetAdminPassword
+   -SteamServerName="$SteamServerName" -ServerPassword=${ServerPassword} $SetAdminPassword \
+   $OverrideSandboxPath \
+   $AdditionalArgs

@@ -10,7 +10,7 @@ services:
     volumes:
       # Change the path './data' if you want to store the save file in some other path/folder.
       # Folder name data is arbitrarily chosen.
-      - "./data:/home/abiotic/abioticserver/AbioticFactor/Saved"
+      - "./Saved:/home/abiotic/abioticserver/AbioticFactor/Saved"
     environment:
       # -- Network configuration --
       #
@@ -61,7 +61,14 @@ services:
       # Multiple worlds can be hosted at the same time by changing the world name.
       WorldSaveName: "Cascade"
       #
-      #AdditionalArgs: "-SandboxIniPath=Config/WindowsServer/Server1Sandbox.ini"
+      # States default sandbox settings of the loaded world.
+      # Updates take place only after server start/restart.
+      # SandboxSettings must be relative to the Saved folder.
+      # Copy the default settings to a new file under 'Saved/'. Replace the path for customized world settings.
+      #OverrideSandboxPath: "-SandboxIniPath=DefaultSandboxSettings.ini"
+      #
+      # You can also pass any other missing launch parameter.
+      AdditionalArgs: ""
     ports:
       # Update ports if you change the port assignments under 'Network configuration' environment variables.
       - "0.0.0.0:7777:7777/udp"
