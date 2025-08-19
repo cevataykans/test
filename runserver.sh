@@ -45,6 +45,11 @@ if [[ $AdminPassword != "" ]]; then
     SetAdminPassword="-AdminPassword=${AdminPassword}"
 fi
 
+# Copy the default SandboxSettings.ini if it does not exist inside Saved/ Volume
+if [ ! -f /home/abiotic/abioticserver/AbioticFactor/Saved/DefaultSandboxSettings.ini ]; then
+    cp /home/abiotic/abioticserver/DefaultSandboxSettings.ini /home/abiotic/abioticserver/AbioticFactor/Saved/DefaultSandboxSettings.ini
+fi
+
 echo ""
 echo "***********"
 echo "Launching abiotic game server..."

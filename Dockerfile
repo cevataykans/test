@@ -35,8 +35,8 @@ RUN apt-get update && apt-get upgrade -y \
 COPY runserver.sh abioticserver/AbioticFactor/Binaries/Win64/runserver.sh
 RUN chmod +x abioticserver/AbioticFactor/Binaries/Win64/runserver.sh
 
+COPY DefaultSandboxSettings.ini abioticserver/DefaultSandboxSettings.ini
 VOLUME ["abioticserver/AbioticFactor/Saved"]
-COPY DefaultSandboxSettings.ini abioticserver/AbioticFactor/Saved/DefaultSandboxSettings.ini
 
 EXPOSE 7777/tcp 7777/udp 27015/tcp 27015/udp
 
